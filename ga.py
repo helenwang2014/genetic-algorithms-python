@@ -1,6 +1,5 @@
 import random
 import math
-from sys import argv
 
 def score(chromosome, target):
 	# Returns the fitness score for the given chromosome
