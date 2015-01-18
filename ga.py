@@ -1,6 +1,6 @@
 import random
 import math
-
+import operator
 
 def objective(chromosome, target):
 	# Returns the fitness score for the given chromosome
@@ -45,14 +45,26 @@ def create_population(size, length):
 	return population
 
 
+def create_table_by_fitness(population, target_value):
 
-def sort_by_fitness(population, target_value):
-	# Sorts a population of chromosomes by their fitness score
-	fitness = 0
+	ranking = []
 
-	for i in range(0, size):
-		for j in range(0, length):
-			objective(population, target_value)
+	for i in range(0, len(population)):
+		ranking.append([])
+		ranking[i].append(objective(population[i], target_value))
+		ranking[i].append(population[i])
+	
+	return ranking
+
+
+def sort_table(table, col):
+	# Sorts a population of chromosomes by their fitness score column
+	
+	return sorted(table, key=operator.itemgetter(col))
+
+
+
+
 
 
 
@@ -61,25 +73,30 @@ print
 
 # Unit tests for score
 print "Unit tests for score"
-print objective([1,2,3,4,5,6,7,8], [1,2,3,4,5,6,7,8]) # should be zero
-print objective([1,2,4,4,5,6,7,8], [1,2,3,4,5,6,7,8]) # should be non-zero
+print objective([1,2,3,4,5,6], [1,2,3,4,5,6]) # should be zero
+print objective([1,2,4,4,5,6], [1,2,3,4,5,6]) # should be non-zero
 print
 
 # Unit tests for crossover
 print "Unit tests for crossover"
-print crossover([0,1,2,3,4,5,6,7,8,9], [9,8,7,6,5,4,3,2,1,0])
+print crossover([0,1,2,3,4,5], [9,8,7,6,5,4])
 print 
 
 # Unit tests for mutate
 print "Unit tests for mutate"
-print mutate([0,1,2,3,4,5,6,7,8,9], 0.1)
+print mutate([0,1,2,3,4,5], 0.5)
 print
 
 
-print create_population(10, 3)
-
+population1 = create_population(10, 6)
+print population1
+print 
+print "Population table with score"
+ranking1 = create_table_by_fitness(population1, [1,2,3,4,5,6])
+print ranking1
+print 
 #Unit tests for sort_by_fitness
 print "Unit tests for sort_by_fitness"
-print sort_by_fitness(create_population(10, 3), )
+print sort_table(ranking1, 0)
 
 
