@@ -1,8 +1,8 @@
 import random
 import math
-from sys import argv
 
-def score(chromosome, target):
+
+def objective(chromosome, target):
 	# Returns the fitness score for the given chromosome
 	score = 0
 
@@ -34,16 +34,35 @@ def mutate(chromosome, probability):
 	return chromosome
 
 
-def sort_by_fitness(population):
+
+def create_population(size, length):
+	population = []
+	for i in range(0, size):
+		population.append([])
+		for j in range(0, length):
+			population[i].append(random.randint(0, 10))
+	
+	return population
+
+
+
+def sort_by_fitness(population, target_value):
 	# Sorts a population of chromosomes by their fitness score
-	pass
+	fitness = 0
+
+	for i in range(0, size):
+		for j in range(0, length):
+			objective(population, target_value)
+
+
+
 
 print
 
 # Unit tests for score
 print "Unit tests for score"
-print score([1,2,3,4,5,6,7,8], [1,2,3,4,5,6,7,8]) # should be zero
-print score([1,2,4,4,5,6,7,8], [1,2,3,4,5,6,7,8]) # should be non-zero
+print objective([1,2,3,4,5,6,7,8], [1,2,3,4,5,6,7,8]) # should be zero
+print objective([1,2,4,4,5,6,7,8], [1,2,3,4,5,6,7,8]) # should be non-zero
 print
 
 # Unit tests for crossover
@@ -55,3 +74,16 @@ print
 print "Unit tests for mutate"
 print mutate([0,1,2,3,4,5,6,7,8,9], 0.1)
 print
+
+
+
+
+
+
+print create_population(10, 3)
+
+#Unit tests for sort_by_fitness
+print "Unit tests for sort_by_fitness"
+print sort_by_fitness(create_population(10, 3), )
+
+
