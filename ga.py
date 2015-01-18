@@ -63,12 +63,6 @@ def sort_table(table, col):
 	return sorted(table, key=operator.itemgetter(col))
 
 
-
-
-
-
-
-
 print
 
 # Unit tests for score
